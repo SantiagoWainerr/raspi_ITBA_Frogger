@@ -1,7 +1,7 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-enum dato_entrada {EMPTY,  LEFT, RIGHT, PAUSE, UP, DOWN};
-int input_reader (void);
+typedef enum {EMPTY,  LEFT, RIGHT, PAUSE, UP, DOWN}dato_entrada;
+dato_entrada input_reader (void);
 
 #endif
