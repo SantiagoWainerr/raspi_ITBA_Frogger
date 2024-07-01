@@ -55,7 +55,7 @@ void gameTick(int32_t ms_since_last_tick)
     int32_t start_object_x,end_object_x;
     const object_kind_t * collision ;
 
-    puts("Map before executing gameTick:\n");
+    //puts("Map before executing gameTick:\n");
     printMap(&map,0);
     ms_cooldown -= ms_since_last_tick;
     time_left_on_level -= ms_since_last_tick;
@@ -203,7 +203,7 @@ void gameTick(int32_t ms_since_last_tick)
     {
         if (ranita.y_position == 0)
         {
-            printf("ARRIVED ON LAST LANE WITH RANITA POSITION %d\n",ranita.y_position);
+            //printf("ARRIVED ON LAST LANE WITH RANITA POSITION %d\n",ranita.y_position);
             if(map.lanes[0].objects[0].position == ranita.values.position && map.lanes[0].objects[0].doesExist == 0) //free slot
             {
                 map.lanes[0].objects[0].doesExist = 1;
@@ -327,7 +327,7 @@ static const object_kind_t * collisionAnalysis(void)
     int32_t i,j,start_object_x,end_object_x,start_ranita_x,end_ranita_x,start_ranita_y,end_ranita_y;
     int32_t start_lane_y,end_lane_y;
     //puts("starting collision analysis");
-    printf("ranita.y_position = %d\nranita.hitbox_height = %d\nranita.position = %d\nranita.params.hitbox_width=%d\n\n",ranita.y_position,ranita.hitbox_height,ranita.values.position,ranita.params.hitbox_width);
+    //printf("ranita.y_position = %d\nranita.hitbox_height = %d\nranita.position = %d\nranita.params.hitbox_width=%d\n\n",ranita.y_position,ranita.hitbox_height,ranita.values.position,ranita.params.hitbox_width);
     
     start_ranita_y = ranita.y_position - ranita.hitbox_height + 1;//Porque ranita.y_position ya tienen en cuenta el primer pixel
     end_ranita_y = ranita.y_position; 
@@ -394,7 +394,7 @@ static void resetRanitaPosition(void)
 {
     ranita.y_position = LANE_Y_PIXELS - 1 - ranita.hitbox_height + 1;
     ranita.values.position = LANE_X_PIXELS / 2;
-    
+
 
 }
 
