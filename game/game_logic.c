@@ -25,7 +25,7 @@ static map_t map;
 static uint32_t level;
 static const uint32_t lane_bound = sizeof(map.lanes)/sizeof(map.lanes[0]);
 static const uint32_t object_bound = sizeof(map.lanes[0].objects)/sizeof(map.lanes[0].objects[0]);
-static uint64_t time_left_on_level;
+static int64_t time_left_on_level;
 
 independent_object_t ranita = {
     .params = {
