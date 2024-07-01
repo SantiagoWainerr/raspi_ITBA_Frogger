@@ -1,7 +1,7 @@
 #include "input.h"
 #include "../driv/joydrv.h"
 
-#define MODULO(x) (x > 0 ? x: -x)
+#define MODULO(x) ((x) > 0 ? (x): -(x))
 #define RANGE 80
 dato_entrada input_reader (void){
     joyinfo_t action = joy_read();

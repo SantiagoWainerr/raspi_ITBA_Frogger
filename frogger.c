@@ -4,13 +4,14 @@
 #include <time.h>
 #include "mundo/renderWorld.h"
 #include "inicialization/inicialization.h"
-
+#include "menus/menu.h"
 
 int main(int argc, char **argv)
 {
     inicialization();
     puts("frogger");
-    initializeGameLogic();   
+    initializeGameLogic();
+    menu();   
     while(1)
     {
         gameTick(100);
