@@ -43,7 +43,7 @@ const object_kind_t snake_object_kind = {
 
 const object_kind_t lilypad_object_kind = {
     .hitbox_width=1,
-    .attr = {.canKill = 0, .isEquippable = 0, .canMove = 0},
+    .attr = {.canKill = 1, .isEquippable = 0, .canMove = 0},
 };
 
 
@@ -255,11 +255,11 @@ const object_kind_t lilypad_object_kind = {
             .background = finish_line,
             .kind = &lilypad_object_kind,
             .objects = {
-                [0]={.position=0,.doesExist=1},
-                [1]={.position=LANE_X_PIXELS*0.2,.doesExist=1},
-                [2]={.position=LANE_X_PIXELS*0.4,.doesExist=1},
-                [3]={.position=LANE_X_PIXELS*0.6,.doesExist=1},
-                [4]={.position=LANE_X_PIXELS*0.8,.doesExist=1}
+                [0]={.position=1,.doesExist=0},
+                [1]={.position=3,.doesExist=0},
+                [2]={.position=5,.doesExist=0},
+                [3]={.position=7,.doesExist=0},
+                [4]={.position=9,.doesExist=0}
             }   
         }
     };
@@ -552,8 +552,8 @@ int32_t fillMap(map_t *_map, uint32_t _level)
                 break;
         }
         _map->lanes[i].virtual_lane_start = -3;
-        _map->lanes[i].ms_to_next= 10;
-        _map->lanes[i].ms_reload = 200;
+        _map->lanes[i].ms_to_next= 0;
+        _map->lanes[i].ms_reload = 500;
         _map->lanes[i].virtual_lane_end =LANE_X_PIXELS + 5; //CAMBIAR ESTO, DEBERIA SER CONST Y PREDEFINIDO EN PATRON
     }
     //printMap(_map);
