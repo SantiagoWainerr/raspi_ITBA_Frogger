@@ -27,12 +27,12 @@ const object_kind_t small_log_object_kind={
 };
 
 const object_kind_t normal_log_object_kind = {
-    .hitbox_width=1,
+    .hitbox_width=2,
     .attr = {.canKill = 0, .isEquippable = 0, .canMove = 1},
 };
 
 const object_kind_t big_log_object_kind = {
-    .hitbox_width=1,
+    .hitbox_width=3,
     .attr = {.canKill = 0, .isEquippable = 0, .canMove = 1},
 };
 
@@ -390,7 +390,7 @@ static const lane_t road_arquetypes[] =
                 [1]={.position=LANE_X_PIXELS*0.2,.doesExist=1},
                 [2]={.position=LANE_X_PIXELS*0.5,.doesExist=1},
                 [3]={.position=LANE_X_PIXELS*0.8,.doesExist=1},
-                [4]={.position=LANE_X_PIXELS*1.6,.doesExist=1}
+                [4]={.position=LANE_X_PIXELS+1,.doesExist=1}
             }
         },
         [3] = 
@@ -402,8 +402,8 @@ static const lane_t road_arquetypes[] =
                 [0]={.position=LANE_X_PIXELS*0.3,.doesExist=1},
                 [1]={.position=LANE_X_PIXELS*0.5,.doesExist=1},
                 [2]={.position=LANE_X_PIXELS*0.9,.doesExist=1},
-                [3]={.position=LANE_X_PIXELS*1.5,.doesExist=1},
-                [4]={.doesExist=0}
+                [3]={.position=LANE_X_PIXELS,    .doesExist=1},
+                [4]={.position=0,                .doesExist=1}
             }
         },
         [4] = 
