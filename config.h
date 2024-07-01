@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-
+//hola
 #define LANES_COUNT 16
 #define MAX_OBJECTS_PER_LANE 5
 
