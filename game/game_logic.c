@@ -38,6 +38,9 @@ independent_object_t ranita = {
     
 };
 
+
+static const independent_object_t * frog[] = {&ranita};
+
 /*
     @BRIEF: gameTick
     -Check if the ranita moved  
@@ -173,7 +176,7 @@ void gameTick(int32_t ms_since_last_tick)
         }
     }
 
-    independent_object_t * frog[] = {&ranita};
+    
     renderWorld(&map, frog, 1, 64);
 }
 
