@@ -25,7 +25,7 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
     
     int aux, existe, position;
     
-    horizontalLine(12, (dcoord_t) {12, 2});
+    horizontalLine(12, (dcoord_t) {2, 15});
 
     for(int row = 0; row < LANES_COUNT; row++){
         if(map->lanes[row].kind == &empty_object || map->lanes[row].kind == NULL){
@@ -52,7 +52,7 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                 case finish_line:
                     if (!existe)
                     {
-                        disp_write(COORDENADA(OFFSET(position),OFFSET_y(row)), D_ON);
+                        disp_write(COORDENADA(OFFSET(position),OFFSET_y(row)), D_OFF);
                     }
                     break;
                 default: // no importa que sea pasto o calle
