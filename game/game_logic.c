@@ -128,7 +128,7 @@ void gameTick(int32_t ms_since_last_tick)
             for(j=0; j<object_bound; ++j)
             {
                 
-                if(map.lanes[i].objects[j].doesExist==0)
+                if(map.lanes[i].objects[j].doesExist==0 || map.lanes[i].kind->attr.canMove == 0)
                 {
                     continue;
                 }   
