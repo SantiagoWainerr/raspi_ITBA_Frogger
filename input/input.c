@@ -27,9 +27,9 @@ dato_entrada input_reader (void){
     }else if(action.x > RANGE){
         if(action.y > 0){
             if (MODULO(action.x) >= MODULO(action.y)){
-                return _RIGHT;
-            }else{
                 return _LEFT;
+            }else{
+                return _DOWN;
             }
         }else{
             if (MODULO(action.x) >= MODULO(action.y)){
