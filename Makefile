@@ -17,7 +17,7 @@ pc: ${MODULES}
 	${CC} -o ${EXEC_NAME} ${MODULES} ${CFLAGS} ${DEFINE_ARGS} ${LIBRARIES}
 
 
-frogger.o: frogger.c game/game_logic.h mundo/renderWorld.h inicialization/inicialization.h
+frogger.o: frogger.c game/game_logic.h mundo/renderWorld.h inicialization/inicialization.h menus/menu.h audio/soundTrack.h
 	${CC} -o frogger.o -c frogger.c ${CFLAGS} ${DEFINE_ARGS} ${LIBRARIES}
 
 game_logic.o:  game/game_logic.c game/game_logic.h entities.o input/input.h finalAnimation/looseLife.o

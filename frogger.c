@@ -5,13 +5,15 @@
 #include "mundo/renderWorld.h"
 #include "inicialization/inicialization.h"
 #include "menus/menu.h"
+#include "audio/soundTrack.h"
 
 int main(int argc, char **argv)
 {
     inicialization();
     puts("frogger");
     initializeGameLogic();
-    menu();   
+    menu();
+    music();   
     while(1)
     {
         gameTick(100);
