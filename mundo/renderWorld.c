@@ -43,7 +43,7 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                         if(aux + position + 1 < 12){
                                 horizontalLineOff(aux, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
                         }else{
-                            horizontalLineOff(12 - position - 1, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
+                            horizontalLineOff(12 - position, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
                         }
                     }
                     break;
@@ -52,7 +52,7 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                         if(aux + position + 1 < 12){
                             horizontalLine(aux, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
                         }else{
-                            horizontalLine(12 - position - 1, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
+                            horizontalLine(12 - position, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
                         }
                             
                     }
