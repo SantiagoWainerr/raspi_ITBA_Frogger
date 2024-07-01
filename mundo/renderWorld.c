@@ -39,31 +39,62 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                 aux = map->lanes[row].kind->hitbox_width;
             }    
             switch ((map->lanes[row]).background){
-                case water:
-                    horizontalLine(12,COORDENADA(2, OFFSET_y(row)));
-                    if(existe && OFFSET(position) < 12){
-                        if(aux + position + 1 < 12){
-                                horizontalLineOff(aux, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
-                        }else{
-                            horizontalLineOff(12 - position, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
-                        }
-                    }
-                    break;
                 case finish_line:
                     if (!existe)
                     {
                         disp_write(COORDENADA(OFFSET(position) + 2,OFFSET_y(row)), D_OFF);
                     }
                     break;
-                default: // no importa que sea pasto o calle
+
+                case water:
+                    horizontalLine(12,COORDENADA(2, OFFSET_y(row)));
+                    // *********************************************************************************
+                    // *********************************************************************************
+                    
                     if(existe && OFFSET(position) < 12){
-                        if(aux + position + 1 < 12){
-                            horizontalLine(aux, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
-                        }else{
-                            horizontalLine(12 - position, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
+                        for(int led = 0; led < aux; led++){
+                            if((position + led < 12)){
+                                disp_write(COORDENADA(OFFSET(position) - led + 2, OFFSET_y(row)), D_OFF);
+                            }else{
+                                led = aux;
+                            }
                         }
-                            
                     }
+                    
+                    // if(existe && OFFSET(position) < 12){
+                    //     if(aux + position + 1 < 12){
+                    //             horizontalLineOff(aux, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
+                    //     }else{
+                    //         horizontalLineOff(12 - position, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
+                    //     }
+                    // }
+
+                    // *********************************************************************************
+                    // *********************************************************************************
+                    break;
+                default:
+                    // *********************************************************************************
+                    // *********************************************************************************
+                    
+                    if(existe && OFFSET(position) < 12){
+                        for(int led = 0; led < aux; led++){
+                            if((position + led < 12)){
+                                disp_write(COORDENADA(OFFSET(position) + 2 - led, OFFSET_y(row)), D_ON);
+                            }else{
+                                led = aux;
+                            }
+                        }
+                    }
+                    // if(existe && OFFSET(position) < 12){
+                    //     if(aux + position + 1 < 12){
+                    //         horizontalLine(aux, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
+                    //     }else{
+                    //         horizontalLine(LANE_X_PIXELS - position, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
+                    //     }
+                    // }
+
+                    // *********************************************************************************
+                    // *********************************************************************************
                     break;
             }
         }
