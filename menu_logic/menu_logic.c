@@ -67,7 +67,6 @@ void menu_2 (int option){
         case RESTART:
             usleep(100000);
             initializeGameLogic();
-            resetRanitaPosition();
             while(state != MENU && state != PAUSAA)
             {       
                 state = gameTick(100);

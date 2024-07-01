@@ -7,14 +7,14 @@
 #include "../input/input.h"
 #include "../finalAnimation/looseLife.h"
 #include "../finalAnimation/final.h"
+#include "../audio/soundTrack.h"
+#include "../mundo/renderWorld.h"
 
 static void updateMap(void);
 static void generateNewLevel(uint32_t _level);
 static const object_kind_t * collisionAnalysis(void);
 
-
-
-
+static void resetRanitaPosition(void);
 
 typedef enum{RANITA_UP,RANITA_DOWN,RANITA_LEFT,RANITA_RIGHT}ranita_logic_direction_t;
 static void triggerRanitaMovement(ranita_logic_direction_t _direction);
@@ -457,6 +457,6 @@ void initializeGameLogic(void)
     level = 0;
     time_left_on_level = TIME_PER_LEVEL_MS;
     fillMap(&map,level);
-
+    resetRanitaPosition();
     printf("lane bound = %d\n",lane_bound);
 }
