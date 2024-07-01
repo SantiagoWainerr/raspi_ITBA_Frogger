@@ -195,8 +195,8 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
     switch(_direction)
     {
         case RANITA_DOWN:
-            temp = ranita.y_position + ranita.hitbox_height; //y position of the bottom
-            if (temp - ranita.hitbox_height >= LANE_Y_PIXELS) //would go below map, set is as low as possible
+            temp = ranita.y_position + ranita.hitbox_height - 1; //y position of the bottom
+            if (temp + ranita.hitbox_height >= LANE_Y_PIXELS) //would go below map, set is as low as possible
             {
                 ranita.y_position = LANE_Y_PIXELS - ranita.hitbox_height; //lowest pixel for the upper left corner
             }
@@ -222,7 +222,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
 
 
         case RANITA_LEFT:
-            if ((ranita.values.position - ranita.params.hitbox_width) <= 0) //would go left from mapside
+            if (ranita.values.position - ranita.params.hitbox_width <= 0) //would go left from mapside
             {
                 ranita.values.position = 0; //leftmost pixel for the upper left corner
             }
@@ -230,6 +230,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             {
                 ranita.values.position -= ranita.params.hitbox_width;
             }
+
             break;
 
 
