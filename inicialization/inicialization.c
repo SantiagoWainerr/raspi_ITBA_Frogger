@@ -1,7 +1,7 @@
 #include "../driv/disdrv.h"
 #include "../driv/joydrv.h"
 #include "../audio/audio.h"
-#include <SDL2/SDL.h>
+//#include <SDL2/SDL.h>
 
 void inicialization (void){
     joy_init();
