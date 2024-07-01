@@ -53,7 +53,7 @@ void gameTick(int32_t ms_since_last_tick)
     uint32_t i,j;
     static int64_t ms_cooldown=0;
     int32_t start_object_x,end_object_x;
-
+    const object_kind_t * collision ;
 
     puts("Map before executing gameTick:\n");
     printMap(&map,0);
@@ -102,7 +102,8 @@ void gameTick(int32_t ms_since_last_tick)
         }
     }
 
-    
+    //Check for collisions after movement
+    collision = collisionAnalysis();
     for(i=0; i < lane_bound; i++)
     {
         int32_t a = map.lanes[i].ms_to_next;
@@ -168,8 +169,11 @@ void gameTick(int32_t ms_since_last_tick)
 
     //Now we move onto the ranita <3
     
-    const object_kind_t * collision = collisionAnalysis();
-    printf("collision = %p\n",collision);
+    
+    if (collision == NULL) //no hubo una colision antes
+    {
+        collision=collisionAnalysis();
+    }
 
     if (collision != NULL && collision->attr.canKill)
     {
@@ -187,7 +191,7 @@ void gameTick(int32_t ms_since_last_tick)
     
     else    //collision == NULL, will check if won
     {
-        if (ranita.y_position ==0 )
+        if (ranita.y_position == 0)
         {
             printf("ARRIVED ON LAST LANE WITH RANITA POSITION %d\n",ranita.y_position);
             if(map.lanes[0].objects[0].position == ranita.values.position && map.lanes[0].objects[0].doesExist == 0) //free slot
