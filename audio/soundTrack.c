@@ -10,9 +10,7 @@
 
 void music (void){
     playMusic(MUSIC, SDL_MIX_MAXVOLUME/2);
-    
 }
-
 void levelSound (void){
     playSound(LEVEL, SDL_MIX_MAXVOLUME);
 }

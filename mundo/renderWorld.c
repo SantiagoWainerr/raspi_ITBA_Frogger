@@ -2,7 +2,7 @@
 #include "../driv/formas.h"
 #include <stdio.h>
 #include "renderWorld.h"
-
+#include "../audio/soundTrack.h"
 #define OFFSET(v) (11 - v)
 #define OFFSET_y(v) (15 - v)
 #define COORDENADA(x,y) ((dcoord_t) {x, y})
@@ -11,11 +11,19 @@
 
 int contador = 0;
 int flag_parpadeo = 1;
-
+int paso = 0;
 void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiempoRestante){
     disp_clear();
     int contador = (tiempoRestante * 1000 * 16)/TIME_PER_LEVEL_MS;
-    
+    if(contador > 2 && contador <= 4 && !paso){
+        timeSound();
+        paso = 1;
+    }
+    if(contador <= 2 && paso){
+        timeSound();
+        paso = 0;
+    }
+
     verticalLine(contador, COORDENADA(0, 16 - contador));
     verticalLine(contador, COORDENADA(15, 16 - contador));
     

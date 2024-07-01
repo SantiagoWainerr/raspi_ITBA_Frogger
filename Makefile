@@ -53,7 +53,7 @@ soundTrack.o: audio/soundTrack.h audio/audio.h audio/soundTrack.c
 input.o: input/input.h input/input.c driv/joydrv.h
 	gcc -Wall -c input/input.c ${LIBRARIES}
 
-renderWorld.o: driv/disdrv.h driv/formas.h mundo/renderWorld.h mundo/renderWorld.c
+renderWorld.o: driv/disdrv.h driv/formas.h mundo/renderWorld.h mundo/renderWorld.c audio/soundTrack.h
 	gcc -Wall -c mundo/renderWorld.c ${LIBRARIES}
 
 menu_logic.o: menu_logic/menu_logic.c menu_logic/menu_logic.h menus/menu.h menus/top.h menus/pause.h game/game_logic.h audio/soundTrack.h driv/disdrv.h
