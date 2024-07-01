@@ -63,38 +63,40 @@ void gameTick(int32_t ms_since_last_tick)
     {
         resetRanitaPosition();
         time_left_on_level = TIME_PER_LEVEL_MS;
+        
     }
+
     if(ms_cooldown < 0) //we can check for movement again 
     {
         
         ms_cooldown = 0;
         dato_entrada a = input_reader();
-        printf("RECEIVED INPUT: %d\n",a);
+        
         switch(input_reader())
         {
             case _EMPTY:
                 break;
 
             case _LEFT:
-                puts("RANITA moved left!\n");
+                
                 triggerRanitaMovement(RANITA_LEFT);
                 ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
                 break;
 
             case _RIGHT:
-                puts("RANITA moved right\n");
+                
                 triggerRanitaMovement(RANITA_RIGHT);
                 ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
                 break;
 
             case _UP:
-                puts("RANITA moved up\n");
+                
                 triggerRanitaMovement(RANITA_UP);
                 ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
                 break;
 
             case _DOWN:
-                puts("RANITA moved down\n");
+                
                 triggerRanitaMovement(RANITA_DOWN);
                 ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
 
@@ -110,6 +112,7 @@ void gameTick(int32_t ms_since_last_tick)
 
     //Check for collisions after movement
     collision = collisionAnalysis();
+
     for(i=0; i < lane_bound; i++)
     {
         int32_t a = map.lanes[i].ms_to_next;
@@ -132,6 +135,7 @@ void gameTick(int32_t ms_since_last_tick)
             {
                 continue;
             }
+
             for(j=0; j<object_bound; ++j)
             {
                 
@@ -168,7 +172,7 @@ void gameTick(int32_t ms_since_last_tick)
                         
                     }
                 }
-                //printLaneObjects(&map.lanes[i],i);
+                
             }
         }
     }
@@ -279,7 +283,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
         case RANITA_LEFT:
             
             temp2 = ranita.values.position - ranita.params.hitbox_width;
-            printf("RANITA MOVED LEFT!! new position would be %d\n",temp2);
+            
             if (temp2 <= 0) //would go left from mapside
             {
                 ranita.values.position = 0; //leftmost pixel for the upper left corner
@@ -381,7 +385,7 @@ static const object_kind_t * collisionAnalysis(void)
 */
 static void triggerDeath(void)
 {
-
+    
 }
 
 
@@ -390,6 +394,8 @@ static void resetRanitaPosition(void)
 {
     ranita.y_position = LANE_Y_PIXELS - 1 - ranita.hitbox_height + 1;
     ranita.values.position = LANE_X_PIXELS / 2;
+    
+
 }
 
 void initializeGameLogic(void)
