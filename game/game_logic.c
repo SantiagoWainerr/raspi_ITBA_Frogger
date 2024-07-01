@@ -25,7 +25,7 @@ static map_t map;
 static uint32_t level;
 static const uint32_t lane_bound = sizeof(map.lanes)/sizeof(map.lanes[0]);
 static const uint32_t object_bound = sizeof(map.lanes[0].objects)/sizeof(map.lanes[0].objects[0]);
-
+static uint64_t time_left_on_level;
 
 independent_object_t ranita = {
     .params = {
@@ -58,6 +58,12 @@ void gameTick(int32_t ms_since_last_tick)
     puts("Map before executing gameTick:\n");
     printMap(&map,0);
     ms_cooldown -= ms_since_last_tick;
+    time_left_on_level -= ms_since_last_tick;
+    if(time_left_on_level <= 0)
+    {
+        resetRanitaPosition();
+        time_left_on_level = TIME_PER_LEVEL_MS;
+    }
     if(ms_cooldown < 0) //we can check for movement again 
     {
         
@@ -233,7 +239,7 @@ void gameTick(int32_t ms_since_last_tick)
     }
 
     
-    renderWorld(&map, iobjs, 1, 64);
+    renderWorld(&map, iobjs, 1, time_left_on_level/1000);
 }
 
 
@@ -390,6 +396,8 @@ void initializeGameLogic(void)
 {
     srand(time(NULL));
     level = 0;
+    time_left_on_level = TIME_PER_LEVEL_MS;
     fillMap(&map,level);
+
     printf("lane bound = %d\n",lane_bound);
 }
