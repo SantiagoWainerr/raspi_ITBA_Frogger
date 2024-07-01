@@ -52,7 +52,7 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                 case finish_line:
                     if (!existe)
                     {
-                        disp_write(COORDENADA(OFFSET(position),OFFSET_y(row)), D_OFF);
+                        disp_write(COORDENADA(OFFSET(position) + 2,OFFSET_y(row)), D_OFF);
                     }
                     break;
                 default: // no importa que sea pasto o calle
