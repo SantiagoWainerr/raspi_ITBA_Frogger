@@ -5,7 +5,7 @@ EXEC_NAME := frogger
 MODULES := game_logic.o frogger.o entities.o inicialization/inicialization.o \
 		   driv/formas.o driv/disdrv.o driv/joydrv.o menus/menu.o menus/pause.o menus/top.o \
 		   finalAnimation/final.o mundo/renderWorld.o audio/soundTrack.o \
-		   audio/libAudioSDL2.o -lSDL2
+		   audio/libAudioSDL2.o 
 
 
 
