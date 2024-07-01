@@ -332,4 +332,4 @@ void initializeGameLogic(void)
     level = 0;
     fillMap(&map,level);
     printf("lane bound = %d\n",lane_bound);
-}static const independent_object_t * frog[] = {&ranita};
+}
