@@ -222,8 +222,9 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
 
 
         case RANITA_LEFT:
-            printf("RANITA MOVED LEFT!! position is %d\n",ranita.values.position);
-            int32_t temp = ranita.values.position - ranita.params.graphics;
+            
+            int32_t temp= ranita.values.position - ranita.params.hitbox_width;
+            printf("RANITA MOVED LEFT!! new position would be %d\n",temp);
             if (temp <= 0) //would go left from mapside
             {
                 ranita.values.position = 0; //leftmost pixel for the upper left corner
