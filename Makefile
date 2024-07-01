@@ -2,10 +2,7 @@ CC := gcc
 CFLAGS := -Wall
 DEFINE_ARGS := -D RPI
 EXEC_NAME := frogger
-MODULES := game_logic.o frogger.o entities.o inicialization/inicialization.o \
-		   driv/formas.o driv/disdrv.o driv/joydrv.o menus/menu.o menus/pause.o menus/top.o \
-		   finalAnimation/final.o mundo/renderWorld.o audio/soundTrack.o \
-		   audio/libAudioSDL2.o  input/input.o finalAnimation/looseLife.o\
+MODULES := game_logic.o frogger.o entities.o 
 
 LIBRARIES := -lSDL2
 
