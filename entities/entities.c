@@ -44,6 +44,7 @@ const object_kind_t snake_object_kind = {
 const object_kind_t lilypad_object_kind = {
     .hitbox_width=1,
     .attr = {.canKill = 1, .isEquippable = 0, .canMove = 0},
+    
 };
 
 
@@ -472,11 +473,11 @@ static const lane_t road_arquetypes[] =
             .background = finish_line,
             .kind = &lilypad_object_kind,
             .objects = {
-                [0]={.position=0,.doesExist=0},
-                [1]={.position=LANE_X_PIXELS*0.2,.doesExist=0},
-                [2]={.position=LANE_X_PIXELS*0.4,.doesExist=0},
-                [3]={.position=LANE_X_PIXELS*0.6,.doesExist=0},
-                [4]={.position=LANE_X_PIXELS*0.8,.doesExist=0}
+                [0]={.position=1,.doesExist=0},
+                [1]={.position=3,.doesExist=0},
+                [2]={.position=5,.doesExist=0},
+                [3]={.position=7,.doesExist=0},
+                [4]={.position=9,.doesExist=0}
             }   
         }
     };
