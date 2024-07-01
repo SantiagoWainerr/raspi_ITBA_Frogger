@@ -39,7 +39,7 @@ independent_object_t ranita = {
 };
 
 
-static const independent_object_t * frog[] = {&ranita};
+static const independent_object_t * iobjs[] = {&ranita};
 
 /*
     @BRIEF: gameTick
@@ -66,21 +66,25 @@ void gameTick(int32_t ms_since_last_tick)
                 break;
 
             case _LEFT:
+                puts("RANITA moved left!\n");
                 triggerRanitaMovement(RANITA_LEFT);
                 ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
                 break;
 
             case _RIGHT:
+                puts("RANITA moved right\n");
                 triggerRanitaMovement(RANITA_RIGHT);
                 ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
                 break;
 
             case _UP:
+                puts("RANITA moved up\n");
                 triggerRanitaMovement(RANITA_UP);
                 ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
                 break;
 
             case _DOWN:
+                puts("RANITA moved down\n");
                 triggerRanitaMovement(RANITA_DOWN);
                 ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
 
@@ -177,7 +181,7 @@ void gameTick(int32_t ms_since_last_tick)
     }
 
     
-    renderWorld(&map, frog, 1, 64);
+    renderWorld(&map, iobjs, 1, 64);
 }
 
 
@@ -328,9 +332,4 @@ void initializeGameLogic(void)
     level = 0;
     fillMap(&map,level);
     printf("lane bound = %d\n",lane_bound);
-}
-
-
-
-
-
+}static const independent_object_t * frog[] = {&ranita};
