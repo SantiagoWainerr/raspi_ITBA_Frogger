@@ -189,7 +189,7 @@ void gameTick(int32_t ms_since_last_tick)
     {
         if (--remainingLives == 0)
         {
-            //end
+            gameOver();
         }
         else
         {
@@ -198,7 +198,20 @@ void gameTick(int32_t ms_since_last_tick)
         }
             
     }
-    
+    else if(map.lanes[ranita.y_position / LANE_Y_PIXELS].background == water)
+    {
+        //Check if the ranita is on water!
+        triggerDeath();
+        if(--remainingLives == 0)
+        {
+            gameOver();
+        }
+        else
+        {
+            looseLife(remainingLives);
+            resetRanitaPosition();
+        }
+    }
     else    //collision == NULL, will check if won
     {
         if (ranita.y_position == 0)
@@ -231,12 +244,16 @@ void gameTick(int32_t ms_since_last_tick)
             }
             else
             {
-                if (--remainingLives > 0)
+                if (--remainingLives == 0)
+                {
+                    gameOver();
+                }
+                else
                 {
                     looseLife(remainingLives);
                     resetRanitaPosition();
                 }
-                looseLife(--remainingLives);
+                
             }
             
         }
