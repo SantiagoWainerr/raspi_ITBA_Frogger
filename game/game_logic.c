@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <time.h>
+#include <unistd.h>
 #include "game_logic.h"
 #include "../entities/entities.h"
 #include "../input/input.h"
@@ -309,6 +310,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             }
             else
             {
+                stepSound();
                 ranita.y_position += ranita.hitbox_height;
             }
             break;
@@ -322,6 +324,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             }
             else
             {
+                stepSound();
                 ranita.y_position -= ranita.hitbox_height;
             }
 
@@ -338,6 +341,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             }
             else
             {
+                stepSound();
                 ranita.values.position -= ranita.params.hitbox_width;
             }
 
@@ -352,6 +356,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             }
             else
             {
+                stepSound();
                 ranita.values.position+= ranita.params.hitbox_width;
             }
             break;

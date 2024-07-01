@@ -21,7 +21,7 @@ void onceDead (char * points){
         printf("%c", arr[i]);
     }
     printf("\n");
-    writingTop(arr, points);
+    // writingTop(arr, points);
     disp_clear();
     disp_update();
 }
