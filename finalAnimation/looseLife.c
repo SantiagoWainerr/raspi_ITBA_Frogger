@@ -1,6 +1,6 @@
 #include "../driv/disdrv.h"
 #include "../driv/formas.h"
-
+#include <time.h>
 #define TOTAL 3
 
 void looseLife (int remaining){
@@ -14,4 +14,5 @@ void looseLife (int remaining){
     for (i = 0; i < remaining; i++){
         fullHeart((dcoord_t){14 - i * 5, 7});    
     }
+    sleep(1);
 }
