@@ -190,27 +190,27 @@ void gameTick(int32_t ms_since_last_tick)
         if (ranita.y_position ==0 )
         {
             printf("ARRIVED ON LAST LANE WITH RANITA POSITION %d\n",ranita.y_position);
-            if(map.lanes[0].objects[0].position == ranita.y_position && map.lanes[0].objects[0].doesExist == 0) //free slot
+            if(map.lanes[0].objects[0].position == ranita.values.position && map.lanes[0].objects[0].doesExist == 0) //free slot
             {
                 map.lanes[0].objects[0].doesExist = 1;
                 resetRanitaPosition();
             }
-            else if(map.lanes[0].objects[1].position == ranita.y_position && map.lanes[0].objects[1].doesExist == 0) //free slot
+            else if(map.lanes[0].objects[1].position == ranita.values.position && map.lanes[0].objects[1].doesExist == 0) //free slot
             {
                 map.lanes[0].objects[1].doesExist = 1;
                 resetRanitaPosition();
             }
-            else if(map.lanes[0].objects[2].position == ranita.y_position && map.lanes[0].objects[2].doesExist == 0) //free slot
+            else if(map.lanes[0].objects[2].position == ranita.values.position && map.lanes[0].objects[2].doesExist == 0) //free slot
             {
                 map.lanes[0].objects[2].doesExist = 1;
                 resetRanitaPosition();
             }
-            else if(map.lanes[0].objects[3].position == ranita.y_position && map.lanes[0].objects[3].doesExist == 0) //free slot
+            else if(map.lanes[0].objects[3].position == ranita.values.position && map.lanes[0].objects[3].doesExist == 0) //free slot
             {
                 map.lanes[0].objects[3].doesExist = 1;
                 resetRanitaPosition();
             }
-            else if(map.lanes[0].objects[4].position == ranita.y_position && map.lanes[0].objects[4].doesExist == 0) //free slot
+            else if(map.lanes[0].objects[4].position == ranita.values.position && map.lanes[0].objects[4].doesExist == 0) //free slot
             {
                 map.lanes[0].objects[4].doesExist = 1;
                 resetRanitaPosition();
