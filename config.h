@@ -25,7 +25,7 @@
 #endif
 
 
-
+#define TIME_PER_LEVEL_MS 32000
 #define LANE_PIXEL_HEIGHT (LANE_Y_PIXELS/LANES_COUNT)
 
 #endif
