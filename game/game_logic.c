@@ -194,7 +194,7 @@ void gameTick(int32_t ms_since_last_tick)
 static void triggerRanitaMovement(ranita_logic_direction_t _direction)
 {
     //REMEMBER that the position is relative to the upper left corner
-    int32_t temp;
+    int32_t temp, temp2;
     switch(_direction)
     {
         case RANITA_DOWN:
@@ -226,9 +226,9 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
 
         case RANITA_LEFT:
             
-            int32_t tempa = ranita.values.position - ranita.params.hitbox_width;
-            printf("RANITA MOVED LEFT!! new position would be %d\n",temp);
-            if (temp <= 0) //would go left from mapside
+            temp2 = ranita.values.position - ranita.params.hitbox_width;
+            printf("RANITA MOVED LEFT!! new position would be %d\n",temp2);
+            if (temp2 <= 0) //would go left from mapside
             {
                 ranita.values.position = 0; //leftmost pixel for the upper left corner
             }
