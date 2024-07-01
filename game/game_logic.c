@@ -59,6 +59,7 @@ void gameTick(int32_t ms_since_last_tick)
     ms_cooldown -= ms_since_last_tick;
     if(ms_cooldown < 0) //we can check for movement again 
     {
+        puts("RANITA CAN MOVE!!!");
         ms_cooldown = 0;
         switch(input_reader())
         {
