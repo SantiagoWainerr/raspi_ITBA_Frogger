@@ -47,6 +47,14 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                         }
                     }
                     break;
+                case finish_line:
+                    if (existe)
+                    {
+                        disp_write(COORDENADA(OFFSET(position),OFFSET_y(row)), D_ON);
+                    }else{
+                        disp_write(COORDENADA(OFFSET(position),OFFSET_y(row)), D_OFF);
+                    }
+                    
                 default: // no importa que sea pasto o calle
                     if(existe && OFFSET(position) < 12){
                         if(aux + position + 1 < 12){

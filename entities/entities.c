@@ -537,22 +537,20 @@ int32_t fillMap(map_t *_map, uint32_t _level)
             case 11:
             case 12:
             case 13:
-            case 14:
                 _map->lanes[i] = road_arquetypes[rand() % road_arquetypes_elements];
                 break;
+            case 14:
             case 15:
                 _map->lanes[i] = grass_arquetypes[rand() % grass_arquetypes_elements];
                 _map->lanes[i].kind = &empty_object; //Disable enemies on starting line
                 break;
-
-
             default:
                 printf("Couldn't find an arquetype for lane %d, defaulting to enemyless grass\n",i);
                 _map->lanes[i] = grass_arquetypes[rand() % grass_arquetypes_elements];
                 break;
         }
         _map->lanes[i].virtual_lane_start = -3;
-        _map->lanes[i].ms_to_next= 0;
+        _map->lanes[i].ms_to_next= 10;
         _map->lanes[i].ms_reload = 500;
         _map->lanes[i].virtual_lane_end =LANE_X_PIXELS + 5; //CAMBIAR ESTO, DEBERIA SER CONST Y PREDEFINIDO EN PATRON
     }
