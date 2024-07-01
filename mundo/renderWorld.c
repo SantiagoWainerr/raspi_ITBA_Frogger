@@ -67,6 +67,8 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
         for(int i = 0; i < size; i++){
             if(flag_parpadeo){
                 disp_write((dcoord_t) {OFFSET(frog[i]->values.position), OFFSET_y(frog[i]->y_position)}, D_ON);
+            }else{
+                disp_write((dcoord_t) {OFFSET(frog[i]->values.position), OFFSET_y(frog[i]->y_position)}, D_OFF);
             }
             flag_parpadeo = !flag_parpadeo;
         } 
