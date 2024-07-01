@@ -43,10 +43,10 @@ final.o: finalAnimation/final.c finalAnimation/final.h driv/disdrv.h driv/joydrv
 	gcc -Wall -c finalAnimation/final.c
 
 soundTrack.o: audio/soundTrack.h audio/audio.h audio/soundTrack.c 
-	gcc -Wall -c soundTrack.c
+	gcc -Wall -c audio/soundTrack.c
 
 input.o: input/input.h input/input.c driv/joydrv.h
-	gcc -Wall -c finalAnimation
+	gcc -Wall -c input/input.c
 
 renderWorld.o: driv/disdrv.h driv/formas.h mundo/renderWorld.h mundo/renderWorld.c
 	gcc -Wall -c mundo/renderWorld.c
