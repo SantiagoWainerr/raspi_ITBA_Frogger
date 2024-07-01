@@ -5,6 +5,7 @@
 #include "game_logic.h"
 #include "../entities/entities.h"
 #include "../input/input.h"
+#include "../finalAnimation/looseLife.h"
 
 static void updateMap(void);
 static void generateNewLevel(uint32_t _level);
@@ -92,6 +93,7 @@ void gameTick(int32_t ms_since_last_tick)
                 ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
 
                 break;
+                
             case _PAUSE:
                 break;
 
@@ -168,9 +170,10 @@ void gameTick(int32_t ms_since_last_tick)
     
     const object_kind_t * collision = collisionAnalysis();
     printf("collision = %p\n",collision);
-    if (collision == &bus_object_kind)
+    if (collision->attr.canKill)
     {
-        
+        looseLife(1);
+        resetRanitaPosition();
     }
     
     else    //collision == NULL, will check if won
@@ -192,7 +195,6 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
 {
     //REMEMBER that the position is relative to the upper left corner
     int32_t temp;
-    int32_t temp2;
     switch(_direction)
     {
         case RANITA_DOWN:
@@ -224,10 +226,9 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
 
         case RANITA_LEFT:
             
-            
-            temp2 = ranita.values.position - ranita.params.hitbox_width;
-            printf("RANITA MOVED LEFT!! new position would be %d\n",temp2);
-            if (temp2 <= 0) //would go left from mapside
+            int32_t tempa = ranita.values.position - ranita.params.hitbox_width;
+            printf("RANITA MOVED LEFT!! new position would be %d\n",temp);
+            if (temp <= 0) //would go left from mapside
             {
                 ranita.values.position = 0; //leftmost pixel for the upper left corner
             }
