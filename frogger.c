@@ -6,18 +6,15 @@
 #include "inicialization/inicialization.h"
 #include "menus/menu.h"
 #include "audio/soundTrack.h"
+#include "menu_logic/menu_logic.h"
 
 int main(int argc, char **argv)
 {
     inicialization();
     puts("frogger");
-    initializeGameLogic();
-    menu();
-    music();   
-    while(1)
-    {
-        gameTick(100);
-        usleep(100000);
-    }
+    initializeGameLogic(); 
+
+    open_menu_1();
+
     return 0;
 }
