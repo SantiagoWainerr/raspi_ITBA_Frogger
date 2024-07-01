@@ -28,7 +28,7 @@ static const uint32_t object_bound = sizeof(map.lanes[0].objects)/sizeof(map.lan
 
 independent_object_t ranita = {
     .params = {
-        .hitbox_width = LANE_X_PIXELS/12,
+        .hitbox_width = 1,
         .attr = {.canKill=0, .canMove=1, .isEquippable=0},
                 
     }, 
@@ -222,6 +222,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
 
 
         case RANITA_LEFT:
+            printf("RANITA MOVED LEFT!! position is %d\n",ranita.values.position);
             if (ranita.values.position - ranita.params.hitbox_width <= 0) //would go left from mapside
             {
                 ranita.values.position = 0; //leftmost pixel for the upper left corner
