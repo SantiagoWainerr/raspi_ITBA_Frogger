@@ -199,7 +199,7 @@ void gameTick(int32_t ms_since_last_tick)
         }
             
     }
-    else if(map.lanes[ranita.y_position / LANE_Y_PIXELS].background == water)
+    else if(map.lanes[ranita.y_position / LANE_PIXEL_HEIGHT].background == water)
     {
         //Check if the ranita is on water!
         triggerDeath();
