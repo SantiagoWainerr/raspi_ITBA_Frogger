@@ -20,7 +20,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction);
 static void triggerDeath(void);
 static void gameOver(void);
 
-
+static uint32_t remainingLives = 3;
 static map_t map;
 static uint32_t level;
 static const uint32_t lane_bound = sizeof(map.lanes)/sizeof(map.lanes[0]);
@@ -40,7 +40,7 @@ independent_object_t ranita = {
 };
 
 
-static const independent_object_t * iobjs[] = {&ranita};
+static const independent_object_t * iobjs[10] = {[0]=&ranita,NULL,NULL,NULL,NULL,NULL};
 
 /*
     @BRIEF: gameTick
@@ -173,16 +173,48 @@ void gameTick(int32_t ms_since_last_tick)
 
     if (collision != NULL && collision->attr.canKill)
     {
-        looseLife(1);
-        resetRanitaPosition();
+        if (--remainingLives == 0)
+        {
+            //end
+        }
+        else
+        {
+            looseLife(remainingLives);
+            resetRanitaPosition();
+        }
+            
     }
     
     else    //collision == NULL, will check if won
     {
-        if (ranita.y_position <= LANE_PIXEL_HEIGHT)
+        if (ranita.y_position ==0 )
         {
-            //llego una ranita al final
-            //resetRanitaPosition();
+
+            if(map.lanes[0].objects[0].position == ranita.y_position && map.lanes[0].objects[0].doesExist == 0) //free slot
+            {
+                map.lanes[0].objects[0].doesExist = 1;
+                resetRanitaPosition();
+            }
+            else if(map.lanes[0].objects[1].position == ranita.y_position && map.lanes[0].objects[1].doesExist == 0) //free slot
+            {
+                map.lanes[0].objects[1].doesExist = 1;
+                resetRanitaPosition();
+            }
+            else if(map.lanes[0].objects[2].position == ranita.y_position && map.lanes[0].objects[2].doesExist == 0) //free slot
+            {
+                map.lanes[0].objects[2].doesExist = 1;
+                resetRanitaPosition();
+            }
+            else if(map.lanes[0].objects[3].position == ranita.y_position && map.lanes[0].objects[3].doesExist == 0) //free slot
+            {
+                map.lanes[0].objects[3].doesExist = 1;
+                resetRanitaPosition();
+            }
+            else if(map.lanes[0].objects[4].position == ranita.y_position && map.lanes[0].objects[4].doesExist == 0) //free slot
+            {
+                map.lanes[0].objects[4].doesExist = 1;
+                resetRanitaPosition();
+            }
             
         }
     }
