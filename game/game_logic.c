@@ -215,6 +215,15 @@ void gameTick(int32_t ms_since_last_tick)
                 map.lanes[0].objects[4].doesExist = 1;
                 resetRanitaPosition();
             }
+            else
+            {
+                if (--remainingLives > 0)
+                {
+                    looseLife(remainingLives);
+                    resetRanitaPosition();
+                }
+                looseLife(--remainingLives);
+            }
             
         }
     }
