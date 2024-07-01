@@ -208,7 +208,14 @@ void gameTick(int32_t ms_since_last_tick)
         //Es un tronco
         if (map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].flag = 1)
         {
-             ranita.y_position+=1;
+            if (map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].direction == RIGHT)
+            {
+                ranita.values.position+=1;
+            }
+            else
+            {
+                ranita.values.position-=1;
+            }
         }   
         
     }
