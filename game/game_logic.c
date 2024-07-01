@@ -234,10 +234,10 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
 
 
         case RANITA_RIGHT:
-            temp = ranita.values.position + ranita.params.hitbox_width; //right corner uppermost pixel
+            temp = ranita.values.position + ranita.params.hitbox_width - 1; //right corner uppermost pixel
             if((temp + ranita.params.hitbox_width) >= LANE_X_PIXELS) //would go right from mapside
             {
-                ranita.values.position = LANE_X_PIXELS - 1;
+                ranita.values.position = LANE_X_PIXELS - 1 - ranita.params.hitbox_width;
             }
             break;
 
