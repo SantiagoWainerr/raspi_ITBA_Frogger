@@ -2,8 +2,9 @@
 #define GAME_LOGIC_H
 #include <stdint.h>
 
-void gameTick(int32_t ms_since_last_tick);
+int gameTick(int32_t ms_since_last_tick);
 void initializeGameLogic(void);
 
+enum juego_avance {NONE, PAUSAA, MENU};
 
-#endif
+#endif 

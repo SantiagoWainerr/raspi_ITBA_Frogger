@@ -2,18 +2,20 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <time.h>
+#include <unistd.h>
 #include "game_logic.h"
 #include "../entities/entities.h"
 #include "../input/input.h"
 #include "../finalAnimation/looseLife.h"
+#include "../finalAnimation/final.h"
+#include "../audio/soundTrack.h"
+#include "../mundo/renderWorld.h"
 
 static void updateMap(void);
 static void generateNewLevel(uint32_t _level);
 static const object_kind_t * collisionAnalysis(void);
+
 static void resetRanitaPosition(void);
-
-
-
 
 typedef enum{RANITA_UP,RANITA_DOWN,RANITA_LEFT,RANITA_RIGHT}ranita_logic_direction_t;
 static void triggerRanitaMovement(ranita_logic_direction_t _direction);
@@ -48,7 +50,7 @@ static const independent_object_t * iobjs[10] = {[0]=&ranita,NULL,NULL,NULL,NULL
     -Update the objects on the map
     -Check for the interactions between the map and the ranita
 */
-void gameTick(int32_t ms_since_last_tick)
+int gameTick(int32_t ms_since_last_tick)
 {
     uint32_t i,j;
     static int64_t ms_cooldown=0;
@@ -104,6 +106,7 @@ void gameTick(int32_t ms_since_last_tick)
                 break;
                 
             case _PAUSE:
+                return PAUSAA;
                 break;
 
             default:
@@ -194,7 +197,9 @@ void gameTick(int32_t ms_since_last_tick)
     {
         if (--remainingLives == 0)
         {
-            gameOver();
+            
+            // onceDead();
+            return MENU;
         }
         else
         {
@@ -226,6 +231,7 @@ void gameTick(int32_t ms_since_last_tick)
         if(--remainingLives == 0)
         {
             gameOver();
+            return MENU;
         }
         else
         {
@@ -268,6 +274,7 @@ void gameTick(int32_t ms_since_last_tick)
                 if (--remainingLives == 0)
                 {
                     gameOver();
+                    return MENU;
                 }
                 else
                 {
@@ -279,9 +286,15 @@ void gameTick(int32_t ms_since_last_tick)
             
         }
     }
-    // printf("\n\n\n ********* %d *********\n\n\n", time_left_on_level);
+    printf("\n\n\n ********* %d *********\n\n\n", time_left_on_level);
     
+    // printMap(&map,1);
+    
+   
+
     renderWorld(&map, iobjs, 1, time_left_on_level/1000);
+
+    return(NONE);
 }
 
 
@@ -299,6 +312,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             }
             else
             {
+                stepSound();
                 ranita.y_position += ranita.hitbox_height;
             }
             break;
@@ -312,6 +326,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             }
             else
             {
+                stepSound();
                 ranita.y_position -= ranita.hitbox_height;
             }
 
@@ -328,6 +343,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             }
             else
             {
+                stepSound();
                 ranita.values.position -= ranita.params.hitbox_width;
             }
 
@@ -342,6 +358,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             }
             else
             {
+                stepSound();
                 ranita.values.position+= ranita.params.hitbox_width;
             }
             break;
@@ -428,7 +445,7 @@ static void triggerDeath(void)
 
 
 
-static void resetRanitaPosition(void)
+void resetRanitaPosition(void)
 {
     ranita.y_position = LANE_Y_PIXELS - 1 - ranita.hitbox_height + 1;
     ranita.values.position = LANE_X_PIXELS / 2;
@@ -447,6 +464,6 @@ void initializeGameLogic(void)
     level = 0;
     time_left_on_level = TIME_PER_LEVEL_MS;
     fillMap(&map,level);
-
+    resetRanitaPosition();
     printf("lane bound = %d\n",lane_bound);
 }

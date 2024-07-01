@@ -1,10 +1,14 @@
 #include "../driv/disdrv.h"
 #include "../driv/formas.h"
 #include <time.h>
+#include <unistd.h>
+#include "../audio/soundTrack.h"
 #define TOTAL 3
 
 void looseLife (int remaining){
     int i;
+    lifeSound();
+    usleep(100000);
     disp_clear();
     // GONE
     for (i = 0; i < TOTAL - remaining; i++){

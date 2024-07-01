@@ -21,6 +21,7 @@ void onceDead (char * points){
         printf("%c", arr[i]);
     }
     printf("\n");
+    // writingTop(arr, points);
     disp_clear();
     disp_update();
 }
@@ -38,7 +39,7 @@ static void finalAnimation (char * points){
             emptyHeart((dcoord_t){14, 7});
         }
         disp_clear();
-        state = !state;
+        state = !state; 
         usleep(750000);
     }
     disp_clear();
