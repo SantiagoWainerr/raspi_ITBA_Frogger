@@ -124,7 +124,7 @@ void gameTick(int32_t ms_since_last_tick)
         
         if(map.lanes[i].ms_to_next <= 0) //Lane should move a pixel
         {
-            
+            map.lanes[i].flag = 1;  
             map.lanes[i].ms_to_next = map.lanes[i].ms_reload; //Reload the ms counter
             /*
                 Now we will analyze if the object should move, and if it does, we have to check
@@ -176,6 +176,10 @@ void gameTick(int32_t ms_since_last_tick)
                 
             }
         }
+        else
+        {
+            map.lanes[i].flag = 0;
+        }
     }
 
     //Now we move onto the ranita <3
@@ -198,6 +202,15 @@ void gameTick(int32_t ms_since_last_tick)
             resetRanitaPosition();
         }
             
+    }
+    else if (collision != NULL && map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].background == water)
+    {
+        //Es un tronco
+        if (map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].flag = 1)
+        {
+             ranita.y_position+=1;
+        }   
+        
     }
     else if(map.lanes[ranita.y_position / LANE_PIXEL_HEIGHT].background == water)
     {
