@@ -170,7 +170,8 @@ void gameTick(int32_t ms_since_last_tick)
     
     const object_kind_t * collision = collisionAnalysis();
     printf("collision = %p\n",collision);
-    if (collision->attr.canKill)
+
+    if (collision != NULL && collision->attr.canKill)
     {
         looseLife(1);
         resetRanitaPosition();
