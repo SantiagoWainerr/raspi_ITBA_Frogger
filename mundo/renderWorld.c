@@ -24,6 +24,8 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
     verticalLine(OFFSET_y(contador) + 1, COORDENADA(15, contador));
     
     int aux, existe, position;
+    
+    horizontalLine(12, (dcoord_t) {12, 2});
 
     for(int row = 0; row < LANES_COUNT; row++){
         if(map->lanes[row].kind == &empty_object || map->lanes[row].kind == NULL){
@@ -48,13 +50,11 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                     }
                     break;
                 case finish_line:
-                    if (existe)
+                    if (!existe)
                     {
                         disp_write(COORDENADA(OFFSET(position),OFFSET_y(row)), D_ON);
-                    }else{
-                        disp_write(COORDENADA(OFFSET(position),OFFSET_y(row)), D_OFF);
                     }
-                    
+                    break;
                 default: // no importa que sea pasto o calle
                     if(existe && OFFSET(position) < 12){
                         if(aux + position + 1 < 12){
