@@ -6,11 +6,12 @@
 #include "../entities/entities.h"
 #include "../input/input.h"
 #include "../finalAnimation/looseLife.h"
+#include "../finalAnimation/final.h"
 
 static void updateMap(void);
 static void generateNewLevel(uint32_t _level);
 static const object_kind_t * collisionAnalysis(void);
-static void resetRanitaPosition(void);
+
 
 
 
@@ -48,7 +49,7 @@ static const independent_object_t * iobjs[10] = {[0]=&ranita,NULL,NULL,NULL,NULL
     -Update the objects on the map
     -Check for the interactions between the map and the ranita
 */
-void gameTick(int32_t ms_since_last_tick)
+int gameTick(int32_t ms_since_last_tick)
 {
     uint32_t i,j;
     static int64_t ms_cooldown=0;
@@ -104,6 +105,7 @@ void gameTick(int32_t ms_since_last_tick)
                 break;
                 
             case _PAUSE:
+                return PAUSAA;
                 break;
 
             default:
@@ -194,7 +196,9 @@ void gameTick(int32_t ms_since_last_tick)
     {
         if (--remainingLives == 0)
         {
-            gameOver();
+            
+            // onceDead();
+            return MENU;
         }
         else
         {
@@ -226,6 +230,7 @@ void gameTick(int32_t ms_since_last_tick)
         if(--remainingLives == 0)
         {
             gameOver();
+            return MENU;
         }
         else
         {
@@ -268,6 +273,7 @@ void gameTick(int32_t ms_since_last_tick)
                 if (--remainingLives == 0)
                 {
                     gameOver();
+                    return MENU;
                 }
                 else
                 {
@@ -281,9 +287,11 @@ void gameTick(int32_t ms_since_last_tick)
     }
     printf("\n\n\n ********* %d *********\n\n\n", time_left_on_level);
     
-    printMap(&map,1);
+    // printMap(&map,1);
 
     renderWorld(&map, iobjs, 1, time_left_on_level/1000);
+
+    return(NONE);
 }
 
 
@@ -430,7 +438,7 @@ static void triggerDeath(void)
 
 
 
-static void resetRanitaPosition(void)
+void resetRanitaPosition(void)
 {
     ranita.y_position = LANE_Y_PIXELS - 1 - ranita.hitbox_height + 1;
     ranita.values.position = LANE_X_PIXELS / 2;

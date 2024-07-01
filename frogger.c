@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 {
     inicialization();
     puts("frogger");
-    initializeGameLogic(); 
+    
 
     open_menu_1();
 

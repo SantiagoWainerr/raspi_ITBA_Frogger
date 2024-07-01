@@ -20,7 +20,7 @@ pc: ${MODULES}
 frogger.o: frogger.c game/game_logic.h mundo/renderWorld.h inicialization/inicialization.h menus/menu.h audio/soundTrack.h menu_logic/menu_logic.h
 	${CC} -o frogger.o -c frogger.c ${CFLAGS} ${DEFINE_ARGS} ${LIBRARIES}
 
-game_logic.o:  game/game_logic.c game/game_logic.h entities.o input/input.h finalAnimation/looseLife.o
+game_logic.o:  game/game_logic.c game/game_logic.h entities.o input/input.h finalAnimation/looseLife.o finalAnimation/final.o
 	${CC} -o game_logic.o -c game/game_logic.c	${DEFINE_ARGS} ${CFLAGS} ${LIBRARIES}
 
 entities.o: entities/entities.c entities/entities.h config.h
@@ -56,7 +56,7 @@ input.o: input/input.h input/input.c driv/joydrv.h
 renderWorld.o: driv/disdrv.h driv/formas.h mundo/renderWorld.h mundo/renderWorld.c
 	gcc -Wall -c mundo/renderWorld.c ${LIBRARIES}
 
-menu_logic.o: menu_logic/menu_logic.c menu_logic/menu_logic.h menus/menu.h menus/top.h menus/pause.h game/game_logic.h audio/soundTrack.h
+menu_logic.o: menu_logic/menu_logic.c menu_logic/menu_logic.h menus/menu.h menus/top.h menus/pause.h game/game_logic.h audio/soundTrack.h driv/disdrv.h
 	gcc -Wall -c menu_logic/menu_logic.c  ${LIBRARIES}
 clean:
 	rm ${MODULES} ${EXEC_NAME} *.o
