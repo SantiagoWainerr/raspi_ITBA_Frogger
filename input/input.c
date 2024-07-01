@@ -5,6 +5,7 @@
 #define RANGE 80
 int input_reader (void){
     joyinfo_t action = joy_read();
+    
     if (action.sw == J_PRESS){
         return PAUSE;
     }
