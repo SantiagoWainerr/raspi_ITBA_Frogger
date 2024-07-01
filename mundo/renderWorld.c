@@ -14,9 +14,10 @@ int flag_parpadeo = 1;
 
 void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiempoRestante){
     disp_clear();
-    int a = TIEMPO/16;
-    if (tiempoRestante != TIEMPO){
+    int a = TIEMPO;
+    if (tiempoRestante != a - 1){
         contador++;
+        a--;
     }else{
         contador = 0;
     }
