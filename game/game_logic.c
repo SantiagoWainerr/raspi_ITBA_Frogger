@@ -415,6 +415,11 @@ static void resetRanitaPosition(void)
 
 }
 
+static void gameOver(void)
+{
+    return ;
+}
+
 void initializeGameLogic(void)
 {
     srand(time(NULL));
