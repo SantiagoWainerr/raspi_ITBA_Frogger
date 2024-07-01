@@ -258,7 +258,7 @@ void gameTick(int32_t ms_since_last_tick)
             
         }
     }
-    // printf("\n\n\n ********* %d *********\n\n\n", time_left_on_level);
+    printf("\n\n\n ********* %d *********\n\n\n", time_left_on_level);
     
     renderWorld(&map, iobjs, 1, time_left_on_level/1000);
 }
