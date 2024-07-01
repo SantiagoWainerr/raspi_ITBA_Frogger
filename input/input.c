@@ -7,44 +7,44 @@ dato_entrada input_reader (void){
     joyinfo_t action = joy_read();
     
     if (action.sw == J_PRESS){
-        return PAUSE;
+        return _PAUSE;
     }
 
     else if(action.x < - RANGE){
         if(action.y > 0){
             if (MODULO(action.x) >= MODULO(action.y)){
-                return RIGHT;
+                return _RIGHT;
             }else{
-                return DOWN;
+                return _DOWN;
             }
         }else{
             if (MODULO(action.x) >= MODULO(action.y)){
-                return RIGHT;
+                return _RIGHT;
             }else{
-                return UP;
+                return _UP;
             }
         }
     }else if(action.x > RANGE){
         if(action.y > 0){
             if (MODULO(action.x) >= MODULO(action.y)){
-                return RIGHT;
+                return _RIGHT;
             }else{
-                return LEFT;
+                return _LEFT;
             }
         }else{
             if (MODULO(action.x) >= MODULO(action.y)){
-                return LEFT;
+                return _LEFT;
             }else{
-                return UP;
+                return _UP;
             }
         }
     }else{
         if (action.y > RANGE){
-            return DOWN;
+            return _DOWN;
         }else if( action.y < - RANGE){
-            return UP;
+            return _UP;
         }else{
-            return EMPTY;
+            return _EMPTY;
         }
         
     }
