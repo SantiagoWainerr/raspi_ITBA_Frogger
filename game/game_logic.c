@@ -4,7 +4,7 @@
 #include <time.h>
 #include "game_logic.h"
 #include "../entities/entities.h"
-
+#include "../input/input.h"
 
 static void updateMap(void);
 static void generateNewLevel(uint32_t _level);
@@ -57,11 +57,36 @@ void gameTick(int32_t ms_since_last_tick)
     if(ms_cooldown < 0) //we can check for movement again 
     {
         ms_cooldown = 0;
-        if(1) //REPLACE FOR CALLING INPUT FUNCTION
+        switch(input_reader())
         {
-            ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
-            //Execute the movement
-            //triggerRanitaMovement(RANITA_UP);
+            case _EMPTY:
+                break;
+
+            case _LEFT:
+                triggerRanitaMovement(RANITA_LEFT);
+                ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
+                break;
+
+            case _RIGHT:
+                triggerRanitaMovement(RANITA_RIGHT);
+                ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
+                break;
+
+            case _UP:
+                triggerRanitaMovement(RANITA_UP);
+                ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
+                break;
+
+            case _DOWN:
+                triggerRanitaMovement(RANITA_DOWN);
+                ms_cooldown = MS_RANITA_MOVEMENT_COOLDOWN;
+
+                break;
+            case _PAUSE:
+                break;
+
+            default:
+                break;
         }
     }
 
