@@ -8,21 +8,16 @@
 #define COORDENADA(x,y) ((dcoord_t) {x, y})
 
 #define DIVISOR 4
-#define TIEMPO 64
+
 int contador = 0;
 int flag_parpadeo = 1;
 
 void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiempoRestante){
     disp_clear();
-    int a = TIEMPO;
-    if (tiempoRestante != a - 1){
-        contador++;
-        a--;
-    }else{
-        contador = 0;
-    }
-    verticalLine(OFFSET_y(contador) + 1, COORDENADA(0, contador));
-    verticalLine(OFFSET_y(contador) + 1, COORDENADA(15, contador));
+    int contador = (tiempoRestante * 1000 * 16)/TIME_PER_LEVEL_MS;
+    
+    verticalLine(contador, COORDENADA(0, 16 - contador));
+    verticalLine(contador, COORDENADA(15, 16 - contador));
     
     int aux, existe, position;
     
