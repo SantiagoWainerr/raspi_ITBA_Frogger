@@ -39,6 +39,9 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
             case water:
                 horizontalLine(LANE_X_PIXELS,COORDENADA(2, OFFSET_y(row)));
                 break;
+            case finish_line:
+                horizontalLine(LANE_X_PIXELS,COORDENADA(2, OFFSET_y(row))); 
+                break;
             default:
                 horizontalLineOff(LANE_X_PIXELS,COORDENADA(2, OFFSET_y(row)) );
                 break;
