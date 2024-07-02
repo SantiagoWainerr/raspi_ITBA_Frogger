@@ -16,14 +16,14 @@ static char * signIn (void);
 
 static void name (void);
 
-void onceDead (char * points){
+void onceDead (char * points, int puntaje_int){
     finalAnimation(points);
     char * arr = signIn();
     for(int i = 0; i < 3; i++){
         printf("%c", arr[i]);
     }
     printf("\n");
-    writing_top(arr, points);
+    writing_top(arr, puntaje_int);
     disp_clear();
     disp_update();
 }

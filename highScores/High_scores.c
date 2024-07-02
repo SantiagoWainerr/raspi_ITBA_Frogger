@@ -116,13 +116,13 @@ bestPlayers_t reading_top (void){
         printf ("The file was succesfully opened\n");
     }
     bestPlayers_t top10;
-    char arr_top10 [70];
-    int c, i, j, k;
-    for (i=0; (i<(sizeof(arr_top10)/sizeof*arr_top10)) && (c = fgetc (pfile))!= EOF ; i++){
+    static char arr_top10 [70];
+    char c, i, j, k;
+    for (i=0; (i< (sizeof(arr_top10)/sizeof*arr_top10)) && (c = fgetc (pfile))!= EOF ; i++){
         arr_top10[i] = c;
     }
     for (j=0; j<10; j++){
-        (top10.name) [j] = &(arr_top10[j*7]);
+        (top10.name)[j] = &(arr_top10[j*7]);
     }
     for (k=0; k<10; k++){
         (top10.puntajes)[k] = &(arr_top10 [3 + k*7]);

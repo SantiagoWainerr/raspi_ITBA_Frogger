@@ -29,6 +29,8 @@ static const uint32_t lane_bound = sizeof(map.lanes)/sizeof(map.lanes[0]);
 static const uint32_t object_bound = sizeof(map.lanes[0].objects)/sizeof(map.lanes[0].objects[0]);
 static int32_t time_left_on_level = 0;
 
+static char * intToString (int puntos);
+
 independent_object_t ranita = {
     .params = {
         .hitbox_width = 1,
@@ -41,6 +43,7 @@ independent_object_t ranita = {
     
 };
 
+int pts = 0;
 
 static const independent_object_t * iobjs[10] = {[0]=&ranita,NULL,NULL,NULL,NULL,NULL};
 
@@ -52,6 +55,7 @@ static const independent_object_t * iobjs[10] = {[0]=&ranita,NULL,NULL,NULL,NULL
 */
 int gameTick(int32_t ms_since_last_tick)
 {
+
     uint32_t i,j;
     static int64_t ms_cooldown=0;
     int32_t start_object_x,end_object_x;
@@ -205,7 +209,7 @@ int gameTick(int32_t ms_since_last_tick)
         if (--remainingLives == 0)
         {
             
-            // onceDead();
+            onceDead(intToString(pts), pts);
             return MENU;
         }
         else
@@ -234,7 +238,8 @@ int gameTick(int32_t ms_since_last_tick)
             {
                 if(--remainingLives == 0)
                 {
-                    gameOver();
+                    onceDead(intToString(pts), pts);;
+                    return MENU;
                 }   
                 else
                 {
@@ -252,7 +257,7 @@ int gameTick(int32_t ms_since_last_tick)
         triggerDeath();
         if(--remainingLives == 0)
         {
-            gameOver();
+            onceDead(intToString(pts), pts);;
             return MENU;
         }
         else
@@ -316,6 +321,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             {
                 stepSound();
                 ranita.y_position += ranita.hitbox_height;
+                pts--;
             }
             break;
 
@@ -330,6 +336,7 @@ static void triggerRanitaMovement(ranita_logic_direction_t _direction)
             {
                 stepSound();
                 ranita.y_position -= ranita.hitbox_height;
+                pts++;
             }
 
             break;
@@ -474,6 +481,7 @@ static void gameOver(void)
 
 void initializeGameLogic(void)
 {
+    pts = 0;
     srand(time(NULL));
     level = 0;
     remainingLives = 3;
@@ -481,4 +489,35 @@ void initializeGameLogic(void)
     fillMap(&map,level);
     resetRanitaPosition();
     printf("lane bound = %d\n",lane_bound);
+}
+
+static char * intToString (int puntos){
+    int arr_alpha [3];
+    static char arr_chars[3];
+    int cont=0;
+    int num_aux = puntos;
+    for (int j = 0; num_aux > 0; j++){
+        arr_alpha [j] = (num_aux%10);
+        num_aux /= 10;
+        cont++;
+    }
+    switch (cont){
+        case 3:
+            for (int k=0; k<cont; k++){
+                arr_chars[k] = arr_alpha[cont-1-k] + '0';
+            }
+            break;
+        case 2:
+            arr_chars[0] = '0';
+            for (int k=1; k<=cont; k++){
+                arr_chars[k] = arr_alpha [cont-k] + '0';
+            }
+            break;
+        case 1:
+            arr_chars[0] = '0';
+            arr_chars[1] = '0';
+            arr_chars[2] = arr_alpha[0] + '0';
+            break;
+    }
+    return arr_chars;
 }
