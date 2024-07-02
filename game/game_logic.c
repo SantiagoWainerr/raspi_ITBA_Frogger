@@ -61,7 +61,7 @@ int gameTick(int32_t ms_since_last_tick)
     printMap(&map,0);
     ms_cooldown -= ms_since_last_tick;
     time_left_on_level -= ms_since_last_tick;
-    printf("time_left_on_level = %d\n",time_left_on_level);
+    
     if(time_left_on_level <= 0)
     {
         resetRanitaPosition();
@@ -211,15 +211,20 @@ int gameTick(int32_t ms_since_last_tick)
     else if (collision != NULL && map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].background == water)
     {
         //Es un tronco
-        if (map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].flag = 1)
+        if (map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].flag == 1)
         {
             if (map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].direction == RIGHT)
             {
-                ranita.values.position+=1;
+                ranita.values.position += 1;
             }
             else
             {
-                ranita.values.position-=1;
+                ranita.values.position -= 1;
+            }
+
+            if(ranita.values.position < 0)
+            {
+                
             }
         }   
         
@@ -412,7 +417,7 @@ static const object_kind_t * collisionAnalysis(void)
             {
                 if (map.lanes[i].objects->doesExist == 0) //Este objeto no existe en esta lane
                 {
-                    continue;
+                    continue ;
                 }
                 start_object_x = map.lanes[i].objects[j].position;
                 end_object_x = map.lanes[i].objects[j].position + map.lanes[i].kind->hitbox_width - 1;
