@@ -23,17 +23,17 @@ const object_kind_t car_object_kind = {
 };
 
 const object_kind_t small_log_object_kind={
-    .hitbox_width=1,
-    .attr = {.canKill = 0, .isEquippable = 0, .canMove = 1},
-};
-
-const object_kind_t normal_log_object_kind = {
     .hitbox_width=2,
     .attr = {.canKill = 0, .isEquippable = 0, .canMove = 1},
 };
 
-const object_kind_t big_log_object_kind = {
+const object_kind_t normal_log_object_kind = {
     .hitbox_width=3,
+    .attr = {.canKill = 0, .isEquippable = 0, .canMove = 1},
+};
+
+const object_kind_t big_log_object_kind = {
+    .hitbox_width=4,
     .attr = {.canKill = 0, .isEquippable = 0, .canMove = 1},
 };
 
