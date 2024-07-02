@@ -216,7 +216,7 @@ int gameTick(int32_t ms_since_last_tick)
         }
             
     }
-    else if (collision != NULL && map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].background == water)
+    else if (collision == &small_log_object_kind || collision == &normal_log_object_kind || &big_log_object_kind)
     {
         //Es un tronco
         if (map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].flag == 1)
@@ -230,9 +230,18 @@ int gameTick(int32_t ms_since_last_tick)
                 ranita.values.position -= 1;
             }
 
-            if(ranita.values.position < 0)
+            if(ranita.values.position < 0 || ranita.values.position >= LANE_X_PIXELS)
             {
-                
+                if(--remainingLives == 0)
+                {
+                    gameOver();
+                }   
+                else
+                {
+                    time_left_on_level = TIME_PER_LEVEL_MS;
+                    looseLife(remainingLives);
+                    resetRanitaPosition();
+                }
             }
         }   
         
