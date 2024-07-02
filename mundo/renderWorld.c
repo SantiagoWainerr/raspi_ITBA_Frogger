@@ -39,24 +39,27 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
             case water:
                 horizontalLine(LANE_X_PIXELS,COORDENADA(2, OFFSET_y(row)));
                 break;
+            case finish_line:
+                horizontalLine(LANE_X_PIXELS,COORDENADA(2,OFFSET(row)));
+                break;
+
+            
             default:
                 horizontalLineOff(LANE_X_PIXELS,COORDENADA(2, OFFSET_y(row)) );
                 break;
         }
+        
         for(int p = 0; p < MAX_OBJECTS_PER_LANE; p++){
             // TAMAÑO DEL OBJETO SI ES QUE LO HAY
             existe = map->lanes[row].objects[p].doesExist;
             position = map->lanes[row].objects[p].position;
-            if(existe){
-                aux = map->lanes[row].kind->hitbox_width;
-            }    
+            aux = map->lanes[row].kind->hitbox_width;    
+
             switch ((map->lanes[row]).background){
                 case finish_line:
                     if (!existe)
                     {
                         disp_write(COORDENADA(OFFSET(position) + 2,OFFSET_y(row)), D_OFF);
-                    }else{
-                        disp_write(COORDENADA(OFFSET(position) + 2,OFFSET_y(row)), D_ON);
                     }
                     break;
 
@@ -71,6 +74,7 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                         }
                     }
                     break;
+                    
                 default:
                     if(existe && OFFSET(position) < 12){
                         for(int led = 0; led < aux; led++){
