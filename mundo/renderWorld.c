@@ -30,10 +30,18 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
     int aux, existe, position;
     
     horizontalLine(12, (dcoord_t) {2, 15});
-
+    
     for(int row = 0; row < LANES_COUNT; row++){
         if(map->lanes[row].kind == &empty_object || map->lanes[row].kind == NULL){
             continue;
+        }
+        switch ((map->lanes[row]).background){
+            case water:
+                horizontalLine(LANE_X_PIXELS,COORDENADA(2, OFFSET_y(row)));
+                break;
+            default:
+                horizontalLineOff(LANE_X_PIXELS,COORDENADA(2, OFFSET_y(row)) );
+                break;
         }
         for(int p = 0; p < MAX_OBJECTS_PER_LANE; p++){
             // TAMAÑO DEL OBJETO SI ES QUE LO HAY
@@ -47,14 +55,12 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                     if (!existe)
                     {
                         disp_write(COORDENADA(OFFSET(position) + 2,OFFSET_y(row)), D_OFF);
+                    }else{
+                        disp_write(COORDENADA(OFFSET(position) + 2,OFFSET_y(row)), D_ON);
                     }
                     break;
 
                 case water:
-                    horizontalLine(12,COORDENADA(2, OFFSET_y(row)));
-                    // *********************************************************************************
-                    // *********************************************************************************
-                    
                     if(existe && OFFSET(position) < 12){
                         for(int led = 0; led < aux; led++){
                             if((position + led < 12)){
@@ -64,22 +70,8 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                             }
                         }
                     }
-                    
-                    // if(existe && OFFSET(position) < 12){
-                    //     if(aux + position + 1 < 12){
-                    //             horizontalLineOff(aux, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
-                    //     }else{
-                    //         horizontalLineOff(12 - position, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
-                    //     }
-                    // }
-
-                    // *********************************************************************************
-                    // *********************************************************************************
                     break;
                 default:
-                    // *********************************************************************************
-                    // *********************************************************************************
-                    
                     if(existe && OFFSET(position) < 12){
                         for(int led = 0; led < aux; led++){
                             if((position + led < 12)){
@@ -89,23 +81,12 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                             }
                         }
                     }
-                    // if(existe && OFFSET(position) < 12){
-                    //     if(aux + position + 1 < 12){
-                    //         horizontalLine(aux, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
-                    //     }else{
-                    //         horizontalLine(LANE_X_PIXELS - position, COORDENADA(OFFSET(position) + 2, OFFSET_y(row)));
-                    //     }
-                    // }
-
-                    // *********************************************************************************
-                    // *********************************************************************************
                     break;
             }
         }
     }
 
     if (frog == NULL){
-
     }else{
         for(int i = 0; i < size; i++){
             if(flag_parpadeo){
