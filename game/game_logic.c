@@ -253,53 +253,31 @@ int gameTick(int32_t ms_since_last_tick)
             resetRanitaPosition();
         }
     }
+    else if(collision == &freeSlot) //got onto a free slot at the end
+    {
+        resetRanitaPosition();
+        uint32_t check = 0;
+        for(uint32_t a =0; a < object_bound; a++)
+        {
+            if (map.lanes[0].objects[a].doesExist == 0) 
+            {
+                check =1;
+            }
+        }
+
+        if (check == 0) //WON, ADVANCE LEVEL
+        {
+            //IMPLEMENT WON MECHANIC
+        }
+        else
+        {
+            resetRanitaPosition();
+        }
+
+    }
     else    //collision == NULL, will check if won
     {
-        if (ranita.y_position == 0)
-        {
-            //printf("ARRIVED ON LAST LANE WITH RANITA POSITION %d\n",ranita.y_position);
-            if(map.lanes[0].objects[0].position == ranita.values.position && map.lanes[0].objects[0].doesExist == 0) //free slot
-            {
-                map.lanes[0].objects[0].doesExist = 1;
-                resetRanitaPosition();
-            }
-            else if(map.lanes[0].objects[1].position == ranita.values.position && map.lanes[0].objects[1].doesExist == 0) //free slot
-            {
-                map.lanes[0].objects[1].doesExist = 1;
-                resetRanitaPosition();
-            }
-            else if(map.lanes[0].objects[2].position == ranita.values.position && map.lanes[0].objects[2].doesExist == 0) //free slot
-            {
-                map.lanes[0].objects[2].doesExist = 1;
-                resetRanitaPosition();
-            }
-            else if(map.lanes[0].objects[3].position == ranita.values.position && map.lanes[0].objects[3].doesExist == 0) //free slot
-            {
-                map.lanes[0].objects[3].doesExist = 1;
-                resetRanitaPosition();
-            }
-            else if(map.lanes[0].objects[4].position == ranita.values.position && map.lanes[0].objects[4].doesExist == 0) //free slot
-            {
-                map.lanes[0].objects[4].doesExist = 1;
-                resetRanitaPosition();
-            }
-            else
-            {
-                if (--remainingLives == 0)
-                {
-                    gameOver();
-                    return MENU;
-                }
-                else
-                {   
-                    time_left_on_level = TIME_PER_LEVEL_MS;
-                    looseLife(remainingLives);
-                    resetRanitaPosition();
-                }
-                
-            }
-            
-        }
+        //Nothing, no collision   
     }
     printf("\n\n\n ********* %d *********\n\n\n", time_left_on_level);
     
@@ -425,7 +403,7 @@ static const object_kind_t * collisionAnalysis(void)
             //printf("Ranita was found to appear on lane %d\n",i);
             for(j=0;j<object_bound;j++)
             {
-                if (map.lanes[i].objects->doesExist == 0) //Este objeto no existe en esta lane
+                if (map.lanes[i].objects[0].doesExist == 0 && map.lanes[i].objects[j].lily_flag == 0) //Este objeto no existe en esta lane
                 {
                     continue ;
                 }
@@ -436,6 +414,11 @@ static const object_kind_t * collisionAnalysis(void)
                 ||(end_ranita_x >= start_object_x && end_ranita_x <= end_object_x))
                 {
                     //printf("Collision! On lane %d, .kind = %p\n",i,map.lanes[i].kind);
+                    if(map.lanes[i].objects[j].lily_flag == 1 && map.lanes[i].objects[j].doesExist == 0)
+                    {
+                        map.lanes[i].objects[j].doesExist = 1;
+                        return &freeSlot;
+                    }
                     return map.lanes[i].kind;
                 }    
             }

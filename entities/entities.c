@@ -388,11 +388,12 @@ static const lane_t road_arquetypes[] =
             .kind = &small_log_object_kind,
             .objects = {
                 [0]={.position=0,.doesExist=1},
-                [1]={.position=LANE_X_PIXELS*0.2,.doesExist=1},
-                [2]={.position=LANE_X_PIXELS*0.5,.doesExist=1},
-                [3]={.position=LANE_X_PIXELS*0.8,.doesExist=1},
-                [4]={.position=LANE_X_PIXELS+1,.doesExist=1}
-            }
+                [1]={.position=LANE_X_PIXELS*0.4,.doesExist=1},
+                [2]={.position=LANE_X_PIXELS*0.6,.doesExist=1},
+                [3]={.doesExist=0},
+                [4]={.doesExist=0}
+            }        
+        
         },
         [3] = 
         {
@@ -473,11 +474,11 @@ static const lane_t road_arquetypes[] =
             .background = finish_line,
             .kind = &lilypad_object_kind,
             .objects = {
-                [0]={.position=1,.doesExist=0},
-                [1]={.position=3,.doesExist=0},
-                [2]={.position=5,.doesExist=0},
-                [3]={.position=7,.doesExist=0},
-                [4]={.position=9,.doesExist=0}
+                [0]={.position=ENDSLOT_1,.doesExist=0,.lily_flag = 1},
+                [1]={.position=ENDSLOT_2,.doesExist=0,.lily_flag = 1},
+                [2]={.position=ENDSLOT_3,.doesExist=0,.lily_flag = 1},
+                [3]={.position=ENDSLOT_4,.doesExist=0,.lily_flag = 1},
+                [4]={.position=ENDSLOT_5,.doesExist=0,.lily_flag = 1}
             }   
         }
     };

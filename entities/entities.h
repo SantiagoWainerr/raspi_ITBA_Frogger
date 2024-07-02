@@ -38,6 +38,7 @@ typedef struct{
     int32_t position;
     animation_t animation;
     uint32_t doesExist :1;
+    uint32_t lily_flag :1;
     
 }object_t;
 
@@ -74,6 +75,8 @@ typedef struct{
 
 extern const object_kind_t bus_object_kind;
 extern const object_kind_t empty_object;
+extern const object_kind_t lilypad_object_kind;
+extern const object_kind_t freeSlot;
 
 int32_t fillMap(map_t *_map,uint32_t _level);
 void printMap(map_t *_map,int32_t a);
