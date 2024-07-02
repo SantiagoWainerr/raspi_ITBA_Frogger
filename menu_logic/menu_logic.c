@@ -7,7 +7,7 @@
 #include "../game/game_logic.h" 
 #include "../audio/soundTrack.h"
 #include "../driv/disdrv.h"
-#include "../entities/entities.h"
+
 bestPlayers_t jugadores = {{"VIC","SAN","LOR","MARC","AGU","PAP","SOS","MAT","NO","JOR"},{"2021","100","89","76","67","43","25","10","7","3"}};
 
 void menu_1 (int option){
