@@ -73,7 +73,7 @@ int gameTick(int32_t ms_since_last_tick)
     {
         
         ms_cooldown = 0;
-        dato_entrada a = input_reader();
+        
         
         switch(input_reader())
         {

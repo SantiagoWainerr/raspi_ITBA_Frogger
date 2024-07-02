@@ -455,9 +455,9 @@ static const lane_t road_arquetypes[] =
             .background = grass,
             .kind = &snake_object_kind,
             .objects = {
-                [0]={.position=0,.doesExist=1},
-                [1]={.position=LANE_X_PIXELS*0.5,.doesExist=1},
-                [2]={.position=LANE_X_PIXELS*1.5,.doesExist=1},
+                [0]={.doesExist=0},
+                [1]={.doesExist=0},
+                [2]={.doesExist=0},
                 [3]={.doesExist=0},
                 [4]={.doesExist=0}
             }
@@ -550,12 +550,19 @@ int32_t fillMap(map_t *_map, uint32_t _level)
                 _map->lanes[i] = grass_arquetypes[rand() % grass_arquetypes_elements];
                 break;
         }
-        _map->lanes[i].virtual_lane_start = -3;
-        _map->lanes[i].ms_to_next= 10;
-        _map->lanes[i].ms_reload = 500;
-        _map->lanes[i].virtual_lane_end =LANE_X_PIXELS + 5; //CAMBIAR ESTO, DEBERIA SER CONST Y PREDEFINIDO EN PATRON
+        
+        #if defined(RPI)
+            _map->lanes[i].virtual_lane_start = -3;
+            _map->lanes[i].ms_to_next= 10;
+            _map->lanes[i].ms_reload = 500;
+            _map->lanes[i].virtual_lane_end =LANE_X_PIXELS + 5; //CAMBIAR ESTO, DEBERIA SER CONST Y PREDEFINIDO EN PATRON
+        
+        #elif defined(PC)
+
+        #endif
+        
     }
-    //printMap(_map);
+    
     return 0;
 }
 
