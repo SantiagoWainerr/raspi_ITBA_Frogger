@@ -6,7 +6,7 @@ MODULES := game_logic.o frogger.o entities.o inicialization/inicialization.o \
 		   driv/formas.o driv/disdrv.o driv/joydrv.o menus/menu.o menus/pause.o menus/top.o \
 		   finalAnimation/final.o mundo/renderWorld.o audio/soundTrack.o \
 		   audio/libAudioSDL2.o  input/input.o finalAnimation/looseLife.o menu_logic.o\
-
+		   highScores/High_scores.o
 LIBRARIES := -lSDL2
 
 
@@ -38,10 +38,10 @@ menu.o: menus/menu.c menus/menu.h driv/disdrv.h driv/joydrv.h driv/formas.h
 pause.o: menus/pause.c menus/pause.h driv/disdrv.h driv/joydrv.h driv/formas.h
 	gcc -Wall -c menus/pause.c ${LIBRARIES}
 
-top.o: menus/top.c menus/top.h driv/disdrv.h driv/joydrv.h driv/formas.h
+top.o: menus/top.c menus/top.h driv/disdrv.h driv/joydrv.h driv/formas.h 
 	gcc -Wall -c menus/top.c ${LIBRARIES}
 
-final.o: finalAnimation/final.c finalAnimation/final.h driv/disdrv.h driv/joydrv.h driv/formas.h
+final.o: finalAnimation/final.c finalAnimation/final.h driv/disdrv.h driv/joydrv.h driv/formas.h highScores/High_scores.h
 	gcc -Wall -c finalAnimation/final.c ${LIBRARIES}
 
 looseLife.o: finalAnimation/looseLife.c finalAnimation/looseLife.h driv/disdrv.h driv/joydrv.h driv/formas.h audio/soundTrack.h
@@ -56,7 +56,11 @@ input.o: input/input.h input/input.c driv/joydrv.h
 renderWorld.o: driv/disdrv.h driv/formas.h mundo/renderWorld.h mundo/renderWorld.c audio/soundTrack.h
 	gcc -Wall -c mundo/renderWorld.c ${LIBRARIES}
 
-menu_logic.o: menu_logic/menu_logic.c menu_logic/menu_logic.h menus/menu.h menus/top.h menus/pause.h game/game_logic.h audio/soundTrack.h driv/disdrv.h
+menu_logic.o: menu_logic/menu_logic.c menu_logic/menu_logic.h menus/menu.h highScores/High_scores.h menus/top.h menus/pause.h game/game_logic.h audio/soundTrack.h driv/disdrv.h
 	gcc -Wall -c menu_logic/menu_logic.c  ${LIBRARIES}
+
+High_scores.o: highScores/High_scores.h highScores/High_scores.c menus/top.h
+	gcc -Wall -c highScores/High_scores.c
+
 clean:
 	rm ${MODULES} ${EXEC_NAME} *.o

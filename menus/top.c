@@ -7,6 +7,7 @@
 static int reading (joyinfo_t * inputJ);
 static void top (char * name, char * puntaje, char puesto);
 static void top2 (char * name, char * puntaje, char puesto);
+
 int topTen(bestPlayers_t bestPlayers){
     joyinfo_t inputJ = {0, 0, 0};
     int state = TOP1;
