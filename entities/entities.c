@@ -285,9 +285,9 @@ static const lane_t road_arquetypes[] =
             .objects =
             {
                 [0]={.position=0,.doesExist=1},
-                [1]={.position=LANE_X_PIXELS*0.4,.doesExist=1},
-                [2]={.position=LANE_X_PIXELS*0.8,.doesExist=1},
-                [3]={.position=LANE_X_PIXELS*1.5,.doesExist=1},
+                [1]={.position=5,.doesExist=1},
+                [2]={.position=10,.doesExist=1},
+                [3]={.position=15,.doesExist=1},
                 [4]={.doesExist=0}
             } 
         },
@@ -298,11 +298,11 @@ static const lane_t road_arquetypes[] =
             .background = road,
             .objects =
             {
-                [0]={.position=LANE_X_PIXELS*0.2,.doesExist=1},
-                [1]={.position=LANE_X_PIXELS*0.4,.doesExist=1},
-                [2]={.position=LANE_X_PIXELS*0.8,.doesExist=1},
-                [3]={.position=LANE_X_PIXELS*1.2,.doesExist=1},
-                [4]={.position=LANE_X_PIXELS*1.5,.doesExist=1}
+                [0]={.position=-1,.doesExist=1},
+                [1]={.position=5,.doesExist=1},
+                [2]={.position=9,.doesExist=1},
+                [3]={.position=11,.doesExist=1},
+                [4]={.position=16,.doesExist=1}
             } 
         },
         [2]=
@@ -326,11 +326,11 @@ static const lane_t road_arquetypes[] =
             .background = road,
             .objects =
             {
-                [0]={.position=LANE_X_PIXELS*0.2,.doesExist=1},
-                [1]={.position=LANE_X_PIXELS*0.4,.doesExist=1},
-                [2]={.position=LANE_X_PIXELS*0.6,.doesExist=1},
-                [3]={.position=LANE_X_PIXELS*1.5,.doesExist=1},
-                [4]={.position=LANE_X_PIXELS*1.8,.doesExist=1}
+                [0]={.position=-10,.doesExist=1},
+                [1]={.position=-3,.doesExist=1},
+                [2]={.position=0,.doesExist=1},
+                [3]={.position=8,.doesExist=1},
+                [4]={.position=15,.doesExist=1}
             } 
         },
         [4]=
@@ -570,7 +570,7 @@ int32_t fillMap(map_t *_map, uint32_t _level)
             _map->lanes[i].virtual_lane_end =LANE_X_PIXELS + 5; //CAMBIAR ESTO, DEBERIA SER CONST Y PREDEFINIDO EN PATRON
         
         #elif defined(PC)
-
+            _____fpos_t_defined j;
         #endif
         
     }
