@@ -75,8 +75,21 @@ typedef struct{
 
 extern const object_kind_t bus_object_kind;
 extern const object_kind_t empty_object;
+
+extern const object_kind_t car_object_kind_v1;
+extern const object_kind_t car_object_kind_v2;
+
+extern const object_kind_t small_log_object_kind;
+extern const object_kind_t normal_log_object_kind;
+extern const object_kind_t big_log_object_kind;
+
+extern const object_kind_t snake_object_kind;
+
+
+extern const object_kind_t final_frog_object_kind;
 extern const object_kind_t lilypad_object_kind;
 extern const object_kind_t freeSlot;
+
 
 int32_t fillMap(map_t *_map,uint32_t _level);
 void printMap(map_t *_map,int32_t a);

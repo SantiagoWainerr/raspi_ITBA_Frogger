@@ -179,12 +179,22 @@ const object_kind_t lilypad_object_kind = {
             }
         },
         [3] = 
-        {
-            .direction = RIGHT,
-            .background = water,
-            .kind = &small_log_object_kind,
-            .objects = {
-                [0]={.position=LANE_X_PIXELS*0.3,.doesExist=1},
+        {extern const object_kind_t bus_object_kind;
+extern const object_kind_t empty_object;
+
+extern const object_kind_t car_object_kind_v1;
+extern const object_kind_t car_object_kind_v2;
+
+extern const object_kind_t small_log_object_kind;
+extern const object_kind_t normal_log_object_kind;
+extern const object_kind_t big_log_object_kind;
+
+extern const object_kind_t snake_object_kind;
+
+
+extern const object_kind_t final_frog_object_kind;
+extern const object_kind_t lilypad_object_kind;
+extern const object_kind_t freeSlot;E_X_PIXELS*0.3,.doesExist=1},
                 [1]={.position=LANE_X_PIXELS*0.5,.doesExist=1},
                 [2]={.position=LANE_X_PIXELS*0.9,.doesExist=1},
                 [3]={.position=LANE_X_PIXELS*1.5,.doesExist=1},
