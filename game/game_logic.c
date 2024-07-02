@@ -66,6 +66,13 @@ int gameTick(int32_t ms_since_last_tick)
     {
         resetRanitaPosition();
         time_left_on_level = TIME_PER_LEVEL_MS;
+        remainingLives--;
+        looseLife(remainingLives);
+        if(--remainingLives == 0)
+        {
+            gameOver();
+            return MENU;
+        }
         
     }
 
@@ -204,6 +211,7 @@ int gameTick(int32_t ms_since_last_tick)
         else
         {
             looseLife(remainingLives);
+            time_left_on_level = TIME_PER_LEVEL_MS;
             resetRanitaPosition();
         }
             
@@ -240,6 +248,7 @@ int gameTick(int32_t ms_since_last_tick)
         }
         else
         {
+            time_left_on_level = TIME_PER_LEVEL_MS;
             looseLife(remainingLives);
             resetRanitaPosition();
         }
@@ -282,7 +291,8 @@ int gameTick(int32_t ms_since_last_tick)
                     return MENU;
                 }
                 else
-                {
+                {   
+                    time_left_on_level = TIME_PER_LEVEL_MS;
                     looseLife(remainingLives);
                     resetRanitaPosition();
                 }
@@ -296,7 +306,7 @@ int gameTick(int32_t ms_since_last_tick)
     // printMap(&map,1);
     
    
-
+    
     renderWorld(&map, iobjs, 1, time_left_on_level/1000);
 
     return(NONE);

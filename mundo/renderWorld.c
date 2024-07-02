@@ -55,6 +55,8 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                     if (!existe)
                     {
                         disp_write(COORDENADA(OFFSET(position) + 2,OFFSET_y(row)), D_OFF);
+                    }else{
+                        disp_write(COORDENADA(OFFSET(position) + 2,OFFSET_y(row)), D_ON);
                     }
                     break;
 
