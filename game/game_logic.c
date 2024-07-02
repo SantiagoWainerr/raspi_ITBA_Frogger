@@ -68,7 +68,7 @@ int gameTick(int32_t ms_since_last_tick)
         time_left_on_level = TIME_PER_LEVEL_MS;
         remainingLives--;
         looseLife(remainingLives);
-        if(--remainingLives == 0)
+        if(remainingLives == 0)
         {
             gameOver();
             return MENU;
@@ -460,6 +460,7 @@ void initializeGameLogic(void)
 {
     srand(time(NULL));
     level = 0;
+    remainingLives = 3;
     time_left_on_level = TIME_PER_LEVEL_MS;
     fillMap(&map,level);
     resetRanitaPosition();

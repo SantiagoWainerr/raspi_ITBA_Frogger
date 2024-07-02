@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include "../highScores/High_scores.h"
+
 static void finalAnimation(char * points);
 
 static int reading (joyinfo_t * inputJ);
@@ -21,7 +23,7 @@ void onceDead (char * points){
         printf("%c", arr[i]);
     }
     printf("\n");
-    // writingTop(arr, points);
+    writing_top(arr, points);
     disp_clear();
     disp_update();
 }
