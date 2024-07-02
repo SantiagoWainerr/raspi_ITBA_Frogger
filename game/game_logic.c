@@ -216,7 +216,7 @@ int gameTick(int32_t ms_since_last_tick)
         }
             
     }
-    else if (collision == &small_log_object_kind || collision == &normal_log_object_kind || &big_log_object_kind)
+    else if (collision == &small_log_object_kind || collision == &normal_log_object_kind || collision == &big_log_object_kind)
     {
         //Es un tronco
         if (map.lanes[ranita.y_position/LANE_PIXEL_HEIGHT].flag == 1)
@@ -384,10 +384,11 @@ static const object_kind_t * collisionAnalysis(void)
     int32_t i,j,start_object_x,end_object_x,start_ranita_x,end_ranita_x,start_ranita_y,end_ranita_y;
     int32_t start_lane_y,end_lane_y;
     //puts("starting collision analysis");
-    //printf("ranita.y_position = %d\nranita.hitbox_height = %d\nranita.position = %d\nranita.params.hitbox_width=%d\n\n",ranita.y_position,ranita.hitbox_height,ranita.values.position,ranita.params.hitbox_width);
+    printf("ranita.y_position = %d\nranita.hitbox_height = %d\nranita.position = %d\nranita.params.hitbox_width=%d\n\n",ranita.y_position,ranita.hitbox_height,ranita.values.position,ranita.params.hitbox_width);
     
-    start_ranita_y = ranita.y_position - ranita.hitbox_height + 1;//Porque ranita.y_position ya tienen en cuenta el primer pixel
-    end_ranita_y = ranita.y_position; 
+    end_ranita_y = ranita.y_position + ranita.hitbox_height - 1;//Porque ranita.y_position ya tienen en cuenta el primer pixel
+    printf("%d\n", start_ranita_y);
+    start_ranita_y = ranita.y_position; 
     start_ranita_x = ranita.values.position;
     end_ranita_x = ranita.values.position + ranita.params.hitbox_width - 1; //Porque position tiene en cuenta el primer pixel
 
@@ -412,24 +413,30 @@ static const object_kind_t * collisionAnalysis(void)
             //printf("Ranita was found to appear on lane %d\n",i);
             for(j=0;j<object_bound;j++)
             {
-                if (map.lanes[i].objects[0].doesExist == 0 && map.lanes[i].objects[j].lily_flag == 0) //Este objeto no existe en esta lane
+                if (map.lanes[i].objects[j].doesExist == 0 && map.lanes[i].objects[j].lily_flag == 0) //Este objeto no existe en esta lane
                 {
-                    continue ;
+                    continue;
                 }
                 start_object_x = map.lanes[i].objects[j].position;
                 end_object_x = map.lanes[i].objects[j].position + map.lanes[i].kind->hitbox_width - 1;
                 //printf("Analyzing object index %d:\n\tstart_object_x = %d\n\tend_object_x = %d\n",j,start_object_x,end_object_x);
+                
                 if((start_ranita_x >= start_object_x && start_ranita_x <= end_object_x)\
                 ||(end_ranita_x >= start_object_x && end_ranita_x <= end_object_x))
                 {
                     //printf("Collision! On lane %d, .kind = %p\n",i,map.lanes[i].kind);
+                    
                     if(map.lanes[i].objects[j].lily_flag == 1 && map.lanes[i].objects[j].doesExist == 0)
                     {
                         map.lanes[i].objects[j].doesExist = 1;
+                        
+                       
                         return &freeSlot;
+                        
                     }
                     return map.lanes[i].kind;
-                }    
+                }
+                
             }
         }
     }
