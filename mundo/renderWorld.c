@@ -62,7 +62,7 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                     break;
 
                 case water:
-                    if(existe && OFFSET(position) < 12){
+                    if(existe && position < 12){
                         for(int led = 0; led < aux; led++){
                             if((position + led < 12) && (position + led >= 0)){
                                 disp_write(COORDENADA(OFFSET(position) - led + 2, OFFSET_y(row)), D_OFF);
@@ -74,7 +74,7 @@ void renderWorld (map_t * map, independent_object_t * frog[], int size, int tiem
                     break;
                     
                 default:
-                    if(existe && OFFSET(position) < 12){
+                    if(existe && position < 12){
                         for(int led = 0; led < aux; led++){
                             if((position + led < 12) && (position + led >= 0)){
                                 disp_write(COORDENADA(OFFSET(position) + 2 - led, OFFSET_y(row)), D_ON);
